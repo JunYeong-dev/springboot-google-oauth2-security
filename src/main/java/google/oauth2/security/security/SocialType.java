@@ -1,4 +1,4 @@
-package google.oauth2.security;
+package google.oauth2.security.security;
 
 public enum SocialType {
     GOOGLE("google");
