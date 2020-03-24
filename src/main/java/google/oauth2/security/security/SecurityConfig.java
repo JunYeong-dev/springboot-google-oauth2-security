@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/oauth2/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**")
                 .permitAll()
                 .antMatchers("/google").hasAuthority(SocialType.GOOGLE.getRoleType())
+                .antMatchers("/github").hasAnyAuthority(SocialType.GITHUB.getRoleType())
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()
@@ -45,7 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .scope("email", "profile")
                     .build();
         }
+        if("github".equals(client)) {
+            OAuth2ClientProperties.Registration registration = clientProperties.getRegistration().get("github");
+            return CommonOAuth2Provider.GITHUB.getBuilder(client)
+                    .clientId(registration.getClientId())
+                    .clientSecret(registration.getClientSecret())
+                    .scope("user:email", "read:user")
+                    .build();
+        }
         return null;
     }
-
 }

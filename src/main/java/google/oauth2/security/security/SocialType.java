@@ -1,7 +1,8 @@
 package google.oauth2.security.security;
 
 public enum SocialType {
-    GOOGLE("google");
+    GOOGLE("google"),
+    GITHUB("github");
 
     private final String ROLE_PREFIX = "ROLE_";
     private String name;
