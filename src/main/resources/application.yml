@@ -8,10 +8,16 @@
 # 5. Create
 # 6. Check client-id
 # 7. Check client-secret
+
 # https://github.com/settings/developers
 # 8. OAuth2 click
 # 9. Check client-id
 # 10. Check client-secret
+
+# https://developers.facebook.com/apps/
+# 11. New App(Personal Security Authentication) - Setting
+# 12. Check client-id
+# 13. Check client-secret
 
 spring:
   security:
@@ -32,3 +38,10 @@ spring:
             scope:
               - user:email
               - read:user
+          facebook:
+            clientId: # 12
+            clientSecret: # 13
+            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
